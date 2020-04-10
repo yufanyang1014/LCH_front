@@ -1,0 +1,100 @@
+@charset "utf-8";
+
+/* 标签默认样式 */
+
+/* *{-webkit-touch-callout:none;} */
+
+html,
+body {
+    -webkit-overflow-scrolling: touch;
+    -webkit-text-size-adjust: none;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    margin: 0 auto;
+    padding: 0;
+    background: none;
+    font-family: 'PingFang SC', 'Microsoft Yahei',  'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', 'sans-serif';
+    color: #4a4a4a;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    max-width: 100%;
+}
+
+fieldset,
+img {
+    max-width: 100%;
+}
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+th,
+var {
+    font-weight: normal;
+    font-style: normal;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+caption,
+th {}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0 auto;
+    font-weight: normal;
+    font-size: 100%;
+}
+
+a {
+    margin: 0 auto;
+    padding: 0;
+    text-decoration: none;
+    color: #1A77FF;
+}
+
+mark {
+    color: #f00;
+    background: none;
+}
+
+ul,
+li,
+ol {
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+}
+
