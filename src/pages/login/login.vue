@@ -1,11 +1,10 @@
 <template>
-  <div class="page-index">
-      1111ee
+  <div class="page-login">
+    
   </div>
 </template>
 
 <script>
-import { bannerGetByTypeApi } from '../../service/home';
 
 export default {
   components: {
@@ -15,8 +14,6 @@ export default {
     
   },
   computed: {
-
-
       
   },
   data() {
@@ -25,19 +22,13 @@ export default {
     }
   },
   mounted() {
-    this.asyncAll();
+
   },
   destroyed() {
 
   },
   methods: {
-    async asyncAll() {
-      const params = {
-        "type": 3
-      };
-      const resData = await bannerGetByTypeApi(params);
-      console.log(resData);
-    },
+
   },
 }
 </script>

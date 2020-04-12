@@ -1,12 +1,12 @@
 import axios from 'axios';
 
 const baseURL = process&&process.env&&process.env.NODE_ENV==='production'?'/api':'/api';
+
 const instance = axios.create({
   baseURL,
-  timeout: 10000,
   responseEncoding: 'utf8',
   headers: {
-    "Content-Type": "application/x-www-form-urlencoded;charset=UTF8"
+    'Content-Type': 'application/json;charset=UTF-8'
   }
 });
 

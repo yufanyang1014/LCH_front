@@ -5,17 +5,17 @@ const publicPath =  NODE_ENV==='production'? '//www.hzyork.com': '/';
 
 const webpack = require('webpack');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const productionGzipExtensions = ['js', 'css']
 
 
 module.exports = {
   devServer: {
-    publicPath,
+    publicPath, // 静态资源获取路径
     open: true,
     proxy: {
       '/api': {
-        target: 'http://121.40.188.9:40000',
+        target: 'http://118.31.47.53:8078',
         ws: true,
         changeOrigin: true,
         pathRewrite: {
@@ -24,18 +24,7 @@ module.exports = {
         cookiePathRewrite: {
           '/': '/api/',
         },
-      },
-      '/data': {
-        target: 'http://www.weather.com.cn',
-        ws: true,
-        changeOrigin: true,
-        pathRewrite: {
-          '^/data/': '',
-        },
-        cookiePathRewrite: {
-          '/': '/data/',
-        },
-      },
+      }
     },
   },
   pluginOptions: {
@@ -65,17 +54,17 @@ module.exports = {
         maxChunks: 5, 
         minChunkSize: 100
       }),
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          compress: {
-              drop_debugger: true, // 注释debugger
-              drop_console: true, // 注释console
-              pure_funcs:['console.log'] // 移除console
-          },
-        },
-          sourceMap: false,
-          parallel: true,
-      }),
+      // new UglifyJsPlugin({
+      //   uglifyOptions: {
+      //     compress: {
+      //         drop_debugger: true, // 注释debugger
+      //         drop_console: true, // 注释console
+      //         pure_funcs:['console.log'] // 移除console
+      //     },
+      //   },
+      //     sourceMap: false,
+      //     parallel: true,
+      // }),
     ]
   }
 }
