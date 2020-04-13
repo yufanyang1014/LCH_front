@@ -1,11 +1,12 @@
 <template>
   <div class="page-index">
-      1111ee
+      <input type="file" @change="handlerFile"/>
+      <input :value="imageUrl"/>
   </div>
 </template>
 
 <script>
-import { bannerGetByTypeApi } from '../../service/home';
+import { bannerGetByTypeApi, imageUploadApi } from '../../service/home';
 
 export default {
   components: {
@@ -21,11 +22,11 @@ export default {
   },
   data() {
     return {
-
+      imageUrl: '',
     }
   },
   mounted() {
-    this.asyncAll();
+    // this.asyncAll();
   },
   destroyed() {
 
@@ -37,6 +38,19 @@ export default {
       };
       const resData = await bannerGetByTypeApi(params);
       console.log(resData);
+    },
+    handlerFile(e) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(file); // 读出 base64
+      reader.onloadend = async () => {
+        const base64 = reader.result.substring(reader.result.indexOf(",") + 1);
+        const params = {
+          base64,
+        }
+        const resData = await imageUploadApi(params);
+        this.imageUrl = resData.data;
+      }
     },
   },
 }
