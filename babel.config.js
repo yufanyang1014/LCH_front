@@ -7,10 +7,10 @@ module.exports = {
       }
     ]
   ],
-  // plugins: [
-  //   [
-  //     "import",
-  //     { libraryName: "ant-design-vue", libraryDirectory: "es", style: true }
-  //   ],
-  // ]
+  plugins: [
+    [
+      "import",
+      { libraryName: "ant-design-vue", libraryDirectory: "lib", style: 'css' }
+    ],
+  ]
 };

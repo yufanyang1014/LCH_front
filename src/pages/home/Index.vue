@@ -2,15 +2,17 @@
   <div class="page-index">
       <input type="file" @change="handlerFile"/>
       <input :value="imageUrl"/>
+      <Alert message="Warning text" />
   </div>
 </template>
 
 <script>
+import { Alert } from 'ant-design-vue';
 import { bannerGetByTypeApi, imageUploadApi } from '../../service/home';
 
 export default {
   components: {
-
+    Alert,
   },
   props: {
     
@@ -26,7 +28,7 @@ export default {
     }
   },
   mounted() {
-    // this.asyncAll();
+    this.asyncAll();
   },
   destroyed() {
 

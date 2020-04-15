@@ -1,7 +1,7 @@
 import http from './http';
 
 export const bannerGetByTypeApi = (params, config) => (
-  http.post('/banner/getByType', params, { ...config })
+  http.post('/banner/adminGetByType', params, { ...config })
 );
 
 export const imageUploadApi = (params, config) => (

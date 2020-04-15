@@ -1,4 +1,6 @@
 import axios from 'axios';
+import router from '../../router';
+import { message } from 'ant-design-vue';
 
 const baseURL = process&&process.env&&process.env.NODE_ENV==='production'?'/api':'/api';
 
@@ -6,12 +8,17 @@ const instance = axios.create({
   baseURL,
   responseEncoding: 'utf8',
   headers: {
-    'Content-Type': 'application/json;charset=UTF-8'
+    'Content-Type': 'application/json;charset=UTF-8',
   }
 });
 
 // 拦截 request
 instance.interceptors.request.use((request) => {
+  const token = localStorage.getItem('token');
+  console.log(`gggjciw${token}`);
+  if (token) {
+    request.headers['adminToken'] = token;
+  }
   return request;
 }, error => Promise.reject(error));
 
@@ -23,6 +30,14 @@ instance.interceptors.response.use((response) => {
   if (response.config.method.toLowerCase() === 'options') return false;
   if (response.status !== 200) {
     return Promise.reject();
+  }
+  if (response.data.code === '401') {
+    message.error('登录失效，请重新登录！');
+    localStorage.removeItem('token');
+    router.replace({
+      path: '/login',
+      query: { redirect: router.currentRoute.fullPath } // 登录成功后跳入浏览的当前页面
+    })
   }
   return Promise.resolve(response.data);
 

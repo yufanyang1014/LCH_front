@@ -2,21 +2,26 @@
   <div class="page-login">
     <section class="login-form">
       <label class="login-form-title">楼促会管理系统</label>
-      <input class="login-form-input" v-model="name"/>
-      <input type="password" class="login-form-input" v-model="password"/>
-      <button class="login-form-btn" :disabled="disabledSubmit" @click="handlerLogin">登&nbsp;录</button>
+      <input class="login-form-input" placeholder="请输入账号" v-model="name"/>
+      <input type="password" class="login-form-input" placeholder="请输入密码" v-model="password"/>
+      <button class="login-form-btn" 
+            :style="{ opacity: disabledSubmit ? .4 : 1 }"
+            :disabled="disabledSubmit" 
+            @click="handlerLogin">
+            登&nbsp;&nbsp;录
+      </button>
     </section>
   </div>
 </template>
 
 <script>
+import { message } from 'ant-design-vue';
 import { userLoginApi } from '../../service/login';
 import imgUser from '../../assets/images/userpass.png';
 import imgName from '../../assets/images/username.png';
 
 export default {
   components: {
-
   },
   props: {
     
@@ -46,8 +51,12 @@ export default {
       const { name, password } = this;
       const params = { name, password };
       const resData = await userLoginApi(params);
-      if (!Number(resData.code)) { return alert(resData.msg) }
-      this.$router.push({ name: 'home' })
+      if (!Number(resData.code)) { return message.error(resData.msg) }
+      const token = resData.data.token;
+      localStorage.setItem('token', token);
+      setTimeout(() => {
+        this.$router.push({ name: 'home' });
+      }, 500);
     },
   },
 }
