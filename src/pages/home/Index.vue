@@ -1,18 +1,45 @@
 <template>
   <div class="page-index">
-      <input type="file" @change="handlerFile"/>
-      <input :value="imageUrl"/>
-      <Alert message="Warning text" />
+    <Layout id="components-layout-demo-top" class="layout">
+      <layoutHeader>
+        <div class="logo" />
+        <Menu
+          theme="dark"
+          mode="horizontal"
+          :defaultSelectedKeys="['setting']"
+          :style="{ lineHeight: '64px' }"
+        >
+        <menuItem key="setting">首页配置</menuItem>
+      </Menu>
+      </layoutHeader>
+      <layoutContent style="padding: 0 50px; overflow: scroll">
+        <Breadcrumb style="margin: 16px 0">
+          <breadcrumbItem>Home</breadcrumbItem>
+          <breadcrumbItem>Settings</breadcrumbItem>
+        </Breadcrumb>
+        <div class="section-content"><router-view /></div>
+      </layoutContent>
+    </Layout>
   </div>
 </template>
 
 <script>
-import { Alert } from 'ant-design-vue';
-import { bannerGetByTypeApi, imageUploadApi } from '../../service/home';
+import { Layout, Menu, Breadcrumb } from 'ant-design-vue';
+
+const layoutContent = Layout.Content;
+const layoutHeader = Layout.Header;
+const breadcrumbItem = Breadcrumb.Item;
+const menuItem = Menu.Item;
 
 export default {
   components: {
-    Alert,
+    Menu,
+    menuItem,
+    Layout,
+    Breadcrumb,
+    breadcrumbItem,
+    layoutContent,
+    layoutHeader,
   },
   props: {
     
@@ -24,41 +51,38 @@ export default {
   },
   data() {
     return {
-      imageUrl: '',
+
     }
   },
   mounted() {
-    this.asyncAll();
+
   },
   destroyed() {
 
   },
   methods: {
-    async asyncAll() {
-      const params = {
-        "type": 3
-      };
-      const resData = await bannerGetByTypeApi(params);
-      console.log(resData);
-    },
-    handlerFile(e) {
-      const file = e.target.files[0];
-      const reader = new FileReader();
-      reader.readAsDataURL(file); // 读出 base64
-      reader.onloadend = async () => {
-        const base64 = reader.result.substring(reader.result.indexOf(",") + 1);
-        const params = {
-          base64,
-        }
-        const resData = await imageUploadApi(params);
-        this.imageUrl = resData.data;
-      }
-    },
+
   },
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-  
+  .page-index {
+    height: 100%;
+    #components-layout-demo-top {
+      height: 100%;
+      .section-content {
+        background: #ffffff;
+        padding: 20px;
+      }
+      .logo {
+        width: 120px;
+        height: 31px;
+        background: rgba(255, 255, 255, 0.2);
+        margin: 16px 24px 16px 0;
+        float: left;
+      }
+    }
+  }
 </style>

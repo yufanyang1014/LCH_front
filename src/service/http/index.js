@@ -15,7 +15,6 @@ const instance = axios.create({
 // 拦截 request
 instance.interceptors.request.use((request) => {
   const token = localStorage.getItem('token');
-  console.log(`gggjciw${token}`);
   if (token) {
     request.headers['adminToken'] = token;
   }

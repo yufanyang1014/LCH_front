@@ -55,8 +55,8 @@ export default {
       const token = resData.data.token;
       localStorage.setItem('token', token);
       setTimeout(() => {
-        this.$router.push({ name: 'home' });
-      }, 500);
+        this.$router.push({ name: 'home/setting' });
+      }, 200);
     },
   },
 }

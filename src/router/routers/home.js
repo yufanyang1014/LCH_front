@@ -18,6 +18,13 @@ export default [
     name: `${prefiexName}home`,
     path: `${prefiexRoute}home`,
     component: () => import('../../pages/home/Index.vue'),
+    children: [
+      {
+        name: 'home/setting',
+        path: 'setting',
+        component: () => import('../../pages/home/setting.vue'),
+      },
+    ],
   },
   // 登录
   {
