@@ -1,8 +1,8 @@
 <template>
   <div class="page-setting">
     <Tabs defaultActiveKey="1">
-      <tabpane tab="Tab 1" key="1"><course /></tabpane>
-      <tabpane tab="Tab 2" key="2"><costumeList /></tabpane>
+      <tabpane tab="轮播图" key="1"><course /></tabpane>
+      <tabpane tab="列表" key="2"><costumeList /></tabpane>
     </Tabs>
   </div>
 </template>

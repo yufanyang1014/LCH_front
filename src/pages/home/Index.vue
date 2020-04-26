@@ -2,7 +2,8 @@
   <div class="page-index">
     <Layout id="components-layout-demo-top" class="layout">
       <layoutHeader>
-        <div class="logo" />
+        <div class="logo">Hi,Admin <Icon type="smile" theme="twoTone" :spin="spin" @click="hanlderSpin" /></div>
+        <div class="login-out" @click="handlerOut">退出 <Icon type="logout" /></div>
         <Menu
           theme="dark"
           mode="horizontal"
@@ -24,7 +25,7 @@
 </template>
 
 <script>
-import { Layout, Menu, Breadcrumb } from 'ant-design-vue';
+import { Layout, Menu, Breadcrumb, Icon } from 'ant-design-vue';
 
 const layoutContent = Layout.Content;
 const layoutHeader = Layout.Header;
@@ -33,6 +34,7 @@ const menuItem = Menu.Item;
 
 export default {
   components: {
+    Icon,
     Menu,
     menuItem,
     Layout,
@@ -51,7 +53,7 @@ export default {
   },
   data() {
     return {
-
+      spin: false,
     }
   },
   mounted() {
@@ -61,7 +63,16 @@ export default {
 
   },
   methods: {
-
+    hanlderSpin() {
+      const { spin } = this;
+      this.spin = !spin;
+    },
+    handlerOut() {
+      localStorage.removeItem('token');
+      setTimeout(() => {
+        this.$router.push({ name: 'login' });
+      }, 100);
+    }
   },
 }
 </script>
@@ -79,9 +90,20 @@ export default {
       .logo {
         width: 120px;
         height: 31px;
+        color: #ffffff;
+        font-size: 14px;
         background: rgba(255, 255, 255, 0.2);
         margin: 16px 24px 16px 0;
         float: left;
+        line-height: 31px;
+        text-align: center;
+      }
+      .login-out {
+        text-align: right;
+        color: #ffffff;
+        font-size: 14px;
+        float: right;
+        cursor: pointer;
       }
     }
   }
