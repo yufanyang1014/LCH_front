@@ -5,7 +5,7 @@ const publicPath =  NODE_ENV==='production'? '//www.hzyork.com': '/';
 
 const webpack = require('webpack');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
-// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const productionGzipExtensions = ['js', 'css']
 
 
@@ -54,17 +54,17 @@ module.exports = {
         maxChunks: 5, 
         minChunkSize: 100
       }),
-      // new UglifyJsPlugin({
-      //   uglifyOptions: {
-      //     compress: {
-      //         drop_debugger: true, // 注释debugger
-      //         drop_console: true, // 注释console
-      //         pure_funcs:['console.log'] // 移除console
-      //     },
-      //   },
-      //     sourceMap: false,
-      //     parallel: true,
-      // }),
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          compress: {
+              drop_debugger: true, // 注释debugger
+              drop_console: true, // 注释console
+              pure_funcs:['console.log'] // 移除console
+          },
+        },
+          sourceMap: false,
+          parallel: true,
+      }),
     ]
   }
 }
