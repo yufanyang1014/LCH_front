@@ -15,7 +15,7 @@
       :rowSelection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange }"
       :dataSource="list" rowKey='id'>
       <template slot="Lname" slot-scope="text, record">
-        <a @click="() => handlerEdit(record)">{{ record.title }}</a>        
+        <a @click="() => handlerEdit(record)">【{{record.fifthItem}}】{{ record.title }}</a>        
       </template>
     </Table> 
     <section class="section-pagination">
@@ -59,7 +59,7 @@
               <FormItem label="发布区域">
                 <Select placeholder="请选择" 
                     v-decorator="['fifthItem', { rules: [{ required: true, message: '请选择发布区域!' }] }]">
-                  <selectOption v-for="item in areaData" :key=item.id :value="item.id">{{ item.title }}</selectOption>
+                  <selectOption v-for="item in areaData" :key=item.id :value="item.title">{{ item.title }}</selectOption>
                 </Select>
               </FormItem>
             </Col>
@@ -167,22 +167,22 @@ const comstyle = {
 
 export default {
   components: {
-   Row,
-   Col,
-   Icon,
-  //  Spin,
-   Input,
-   Select,
-   Table,
-   Button,
-   Drawer,
-   Form,
-   FormItem,
-   DatePicker,
-   Pagination,
-   InputSearch,
-   selectOption,
-   uploadFile
+  Row,
+  Col,
+  Icon,
+//  Spin,
+  Input,
+  Select,
+  Table,
+  Button,
+  Drawer,
+  Form,
+  FormItem,
+  DatePicker,
+  Pagination,
+  InputSearch,
+  selectOption,
+  uploadFile
   },
   data() {
     return {
