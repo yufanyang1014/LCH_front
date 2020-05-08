@@ -1,7 +1,7 @@
 
 const {NODE_ENV} = process.env;
 const path = require('path');
-const publicPath =  NODE_ENV==='production'? '//www.hzyork.com': '/';
+const publicPath =  NODE_ENV==='production'? '//47.105.217.54': '/';
 
 const webpack = require('webpack');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
