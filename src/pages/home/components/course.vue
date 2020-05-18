@@ -1,6 +1,6 @@
 <template>
   <section class="banner-setting">
-    <h1 class="common-title">轮播图设置<span class="commo-tip">(图片最多上传五张，且每张图片大小不能超过1M，建议宽高比为375 * 140)</span></h1>
+    <h1 class="common-title">轮播图设置<span class="commo-tip">(图片最多上传五张，且每张图片大小不能超过3M，建议宽高比为375 * 140)</span></h1>
     <uploadFile v-on:onUpload="bannerSubmit"/>
     <div class="show-banner">
       <div class="show-banner-con" v-for="(item, idx) in bannerImages" :key="idx">

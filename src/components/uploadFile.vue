@@ -1,11 +1,14 @@
 <template>
-  <a href="javascript:;" class="common-upload"><Icon type="upload" /> 选择文件
-    <input class="common-input" type="file" multiple="multiple" @change="handlerFile"/>
-  </a>
+  <span>
+    <a href="javascript:;" class="common-upload"><Icon type="upload" /> 选择文件 &nbsp;&nbsp;
+      <Spin :spinning="spinning" size="small"/>
+      <input class="common-input" type="file" multiple="multiple" @change="handlerFile"/>
+    </a>
+  </span>
 </template>
 
 <script>
-import { Icon, message } from 'ant-design-vue';
+import { Icon, message, Spin  } from 'ant-design-vue';
 import { imageUploadApi } from '../service/home';
 
 export default {
@@ -14,10 +17,11 @@ export default {
   },
   components: {
     Icon,
+    Spin,
   },
   data() {
     return {
-      
+      spinning: false,
     }
   },
   methods: {
@@ -28,22 +32,30 @@ export default {
         message.error('请上传jpeg或者png格式的图片');
         return;
       }
-      const isLt1M = file.size / 1024 / 1024 < 1;
-      if (!isLt1M) {
-        message.error('请将图片大小控制在1M以内!');
+      const isLt2M = file.size / 1024 / 1024 < 3;
+      if (!isLt2M) {
+        message.error('请将图片大小控制在3M以内!');
         return;
       }
       const reader = new FileReader();
       reader.readAsDataURL(file); // 读出 base64
+      this.spinning = true;
       reader.onloadend = async () => {
         const base64 = reader.result.substring(reader.result.indexOf(",") + 1);
         const params = {
           base64,
         }
-        const resData = await imageUploadApi(params);
-        if (!Number(resData.code)) { return message.error(resData.msg) }
-        const linkUrl = resData.data;
-        this.$emit('onUpload', linkUrl);
+        try {
+          const resData = await imageUploadApi(params);
+          if (!Number(resData.code)) { return message.error(resData.msg) }
+          this.spinning = false;
+          const linkUrl = resData.data;
+          this.$emit('onUpload', linkUrl);
+        } catch (err) {
+          console.log(err);
+        } finally {
+          this.spinning = false;
+        }
       }
     },
   },
