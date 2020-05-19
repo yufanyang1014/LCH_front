@@ -15,7 +15,7 @@ module.exports = {
     open: true,
     proxy: {
       '/api': {
-        target: 'http://118.31.47.53:8078',
+        target: 'http://house.sipsea.cn:8078',
         ws: true,
         changeOrigin: true,
         pathRewrite: {

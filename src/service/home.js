@@ -1,4 +1,5 @@
-import http from './http';
+import http from './http/index';
+import $axios from './http/main';
 
 export const bannerAdminGetByTypeApi = (params, config) => (
   http.post('/banner/adminGetByType', params, { ...config })
@@ -6,6 +7,10 @@ export const bannerAdminGetByTypeApi = (params, config) => (
 
 export const imageUploadApi = (params, config) => (
   http.post('/image/upload', params, { ...config })
+);
+
+export const imageUploadFileApi = (params, config) => (
+  $axios.post('/image/uploadFile', params, { ...config })
 );
 
 export const bannerListApi = (params, config) => (

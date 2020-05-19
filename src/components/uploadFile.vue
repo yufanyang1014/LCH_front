@@ -1,6 +1,6 @@
 <template>
   <span>
-    <a href="javascript:;" class="common-upload"><Icon type="upload" /> 选择文件 &nbsp;&nbsp;
+    <a href="javascript:;" class="common-upload"><Icon type="upload" /> 选择图片 &nbsp;&nbsp;
       <Spin :spinning="spinning" size="small"/>
       <input class="common-input" type="file" multiple="multiple" @change="handlerFile"/>
     </a>
